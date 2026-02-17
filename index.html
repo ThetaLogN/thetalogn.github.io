@@ -3,257 +3,320 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giorgio Martucci - Software Engineer</title>
+    <title>Giorgio Martucci — Software Engineer</title>
     <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="apple-touch-icon" href="favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --bg:      #f5f2ee;
+            --surface: #ffffff;
+            --ink:     #1c1917;
+            --ink-2:   #44403c;
+            --ink-3:   #78716c;
+            --border:  #e7e5e4;
+            --accent:  #b85c3e;
+            --radius:  12px;
+            --serif:   'Lora', Georgia, serif;
+            --sans:    'DM Sans', system-ui, sans-serif;
+            --mono:    'DM Mono', monospace;
         }
 
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background-color: #f1f3f5;
-            color: #2d3748;
-            line-height: 1.7;
+            font-family: var(--sans);
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.75;
             min-height: 100vh;
         }
 
+        /* ── HEADER ── */
         header {
-            background-color: #ffffff;
-            padding: 3rem 0 2.5rem;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 2.75rem 0 0;
             text-align: center;
-            border-bottom: 1px solid #e2e8f0;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
             position: relative;
         }
-
         header::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #64748b 0%, #475569 100%);
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), #dda090);
         }
 
-        .avatar-container {
-            position: relative;
-            width: 200px;
-            height: 200px;
-            margin: 0 auto 1.5rem;
+        .header-inner {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 0 1.5rem 0;
         }
 
-        .avatar {
-            width: 200px;
-            height: 200px;
+        .avatar-wrap {
+            width: 110px; height: 110px;
+            margin: 0 auto 1.25rem;
             border-radius: 50%;
-            display: block;
-            object-fit: cover;
-            border: 4px solid #ffffff;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15), 
-                        0 0 0 1px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            border: 3px solid var(--surface);
+            box-shadow: 0 4px 20px rgba(0,0,0,.12);
         }
+        .avatar { width: 100%; height: 100%; object-fit: cover; display: block; }
 
         h1 {
-            font-size: 2.25rem;
+            font-family: var(--serif);
+            font-size: 2rem;
             font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: #1a202c;
-            letter-spacing: -0.5px;
+            color: var(--ink);
+            letter-spacing: -.5px;
+            margin-bottom: .3rem;
         }
 
         .subtitle {
-            color: #64748b;
-            font-size: 1.15rem;
-            margin-bottom: 1.75rem;
-            font-weight: 400;
+            color: var(--ink-3);
+            font-size: .8rem;
+            font-weight: 300;
+            letter-spacing: .8px;
+            text-transform: uppercase;
+            margin-bottom: 1.25rem;
         }
 
         .cv-button {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            background-color: #475569;
-            color: white;
-            padding: 0.85rem 2rem;
+            gap: .45rem;
+            background: var(--accent);
+            color: #fff;
+            padding: .65rem 1.6rem;
             border-radius: 30px;
             text-decoration: none;
+            font-size: .875rem;
             font-weight: 500;
-            font-size: 0.95rem;
-            box-shadow: 0 4px 12px rgba(71, 85, 105, 0.3);
-            letter-spacing: 0.3px;
+            margin-bottom: 1.5rem;
+            transition: background .2s, transform .15s;
+            box-shadow: 0 3px 10px rgba(184,92,62,.28);
         }
+        .cv-button:hover { background: #9e4e34; transform: translateY(-1px); }
+        .cv-button svg { width: 15px; height: 15px; }
 
-        .cv-button .icon {
-            width: 18px;
-            height: 18px;
+        nav {
+            display: flex;
+            justify-content: center;
+            border-top: 1px solid var(--border);
+            margin: 0 -1.5rem;
         }
+        nav a {
+            padding: .8rem 1.75rem;
+            text-decoration: none;
+            color: var(--ink-3);
+            font-size: .8rem;
+            font-weight: 500;
+            letter-spacing: .4px;
+            text-transform: uppercase;
+            border-bottom: 2px solid transparent;
+            transition: color .2s, border-color .2s;
+        }
+        nav a:hover { color: var(--ink); }
+        nav a.active { color: var(--accent); border-bottom-color: var(--accent); }
 
+        /* ── LAYOUT ── */
         .container {
             max-width: 850px;
             margin: 0 auto;
             padding: 2.5rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
         }
 
-        .section {
-            background-color: #ffffff;
-            padding: 2.25rem;
-            margin-bottom: 1.75rem;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-            border: 1px solid #e2e8f0;
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2rem 2.25rem;
+            box-shadow: 0 2px 12px rgba(28,25,23,.06);
         }
-
-        .section h2 {
-            font-size: 1.5rem;
+        .card h2 {
+            font-family: var(--serif);
+            font-size: 1.3rem;
             font-weight: 600;
+            color: var(--ink);
             margin-bottom: 1.25rem;
-            padding-bottom: 0.75rem;
-            border-bottom: 2px solid #475569;
-            color: #1a202c;
-            letter-spacing: -0.3px;
+            padding-bottom: .75rem;
+            border-bottom: 1px solid var(--border);
         }
+        .card p { color: var(--ink-2); font-size: .975rem; }
 
-        .section p {
-            color: #4a5568;
-            font-size: 1rem;
-            line-height: 1.8;
-        }
-
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.65rem;
-            margin-top: 1.25rem;
-        }
-
-        .skill {
-            background-color: #f1f5f9;
-            padding: 0.6rem 1.25rem;
-            border-radius: 24px;
-            font-size: 0.9rem;
-            color: #475569;
-            font-weight: 500;
-            border: 1px solid #cbd5e1;
-        }
-
-        .contact-list {
-            list-style: none;
-            margin-top: 1.25rem;
-        }
-
-        .contact-list li {
+        /* ── BLOG PREVIEW ── */
+        .post-list { list-style: none; }
+        .post-item {
             padding: 1rem 0;
-            border-bottom: 1px solid #e2e8f0;
+            border-bottom: 1px solid var(--border);
+        }
+        .post-item:first-child { padding-top: 0; }
+        .post-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+        .post-link {
             display: flex;
-            align-items: center;
-            gap: 0.75rem;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 1rem;
+            text-decoration: none;
+            color: inherit;
+        }
+        .post-link:hover .post-title { color: var(--accent); }
+
+        .post-title {
+            font-family: var(--serif);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--ink);
+            transition: color .2s;
+        }
+        .post-date {
+            font-family: var(--mono);
+            font-size: .75rem;
+            color: var(--ink-3);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .post-desc {
+            color: var(--ink-3);
+            font-size: .875rem;
+            margin-top: .3rem;
         }
 
-        .contact-list li:last-child {
-            border-bottom: none;
-        }
-
-        .contact-list a {
-            color: #475569;
+        .see-all {
+            display: inline-block;
+            margin-top: 1.25rem;
+            color: var(--accent);
             text-decoration: none;
             font-weight: 500;
+            font-size: .875rem;
         }
+        .see-all:hover { text-decoration: underline; }
 
-        .contact-list strong {
-            color: #334155;
-            min-width: 70px;
+        /* ── CONTACTS ── */
+        .contact-list { list-style: none; }
+        .contact-list li {
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+            padding: .9rem 0;
+            border-bottom: 1px solid var(--border);
+            font-size: .975rem;
         }
+        .contact-list li:last-child { border-bottom: none; }
+        .contact-list strong { color: var(--ink); min-width: 65px; font-weight: 500; }
+        .contact-list a { color: var(--ink-2); text-decoration: none; transition: color .2s; }
+        .contact-list a:hover { color: var(--accent); }
+        .icon { width: 18px; height: 18px; flex-shrink: 0; color: var(--ink-3); }
 
-        .icon {
-            width: 20px;
-            height: 20px;
-            flex-shrink: 0;
-            color: #64748b;
-        }
-
+        /* ── FOOTER ── */
         footer {
             text-align: center;
             padding: 2.5rem 0;
-            color: #64748b;
-            font-size: 0.9rem;
-            background-color: transparent;
+            color: var(--ink-3);
+            font-size: .825rem;
         }
 
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 1.85rem;
-            }
-
-            .container {
-                padding: 2rem 1rem;
-            }
-
-            .section {
-                padding: 1.75rem;
-            }
-
-            .avatar-container {
-                width: 120px;
-                height: 120px;
-            }
-
-            .avatar {
-                width: 120px;
-                height: 120px;
-            }
+        @media (max-width: 600px) {
+            h1 { font-size: 1.65rem; }
+            .card { padding: 1.5rem; }
+            .post-link { flex-direction: column; gap: .2rem; }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="avatar-container">
-            <img src="assets/profile.jpg" alt="Foto profilo" class="avatar">
+
+<header>
+    <div class="header-inner">
+        <div class="avatar-wrap">
+            <img src="assets/profile.jpg" alt="Giorgio Martucci" class="avatar">
         </div>
         <h1>Giorgio Martucci</h1>
         <p class="subtitle">Software Engineer</p>
         <a href="cv.pdf" download class="cv-button">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                <polyline points="7 10 12 15 17 10"></polyline>
-                <line x1="12" y1="15" x2="12" y2="3"></line>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
             </svg>
             Scarica CV
         </a>
-    </header>
-
-    <div class="container">
-        <section class="section">
-            <h2>About me</h2>
-            <p></p>
-        </section>
-
-        <section class="section">
-            <h2>Contact</h2>
-            <ul class="contact-list">
-                <li>
-                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                        <polyline points="22,6 12,13 2,6"></polyline>
-                    </svg>
-                    <strong>Email:</strong> <a href="mailto:giorgiomartucci02@gmail.com">giorgiomartucci02@gmail.com</a>
-                </li>
-                <li>
-                    <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-                    </svg>
-                    <strong>GitHub:</strong> <a href="https://github.com/ThetaLogN" target="_blank" rel="noopener noreferrer">github.com/ThetaLogN</a>
-                </li>
-            </ul>
-        </section>
+        <nav>
+            <a href="/" class="active">Home</a>
+            <a href="/blog/">Blog</a>
+        </nav>
     </div>
+</header>
 
-    <footer>
-        <p>&copy; 2025 Giorgio Martucci. Tutti i diritti riservati.</p>
-    </footer>
+<div class="container">
+
+    <section class="card">
+        <h2>About me</h2>
+        <p><!-- Il tuo testo qui --></p>
+    </section>
+
+    <!-- ╔══════════════════════════════════════════════╗
+         ║  SEZIONE BLOG — aggiungi qui i nuovi post   ║
+         ║  Copia un <li> e aggiorna titolo, data,     ║
+         ║  descrizione e link ad ogni pubblicazione.  ║
+         ╚══════════════════════════════════════════════╝ -->
+    <section class="card">
+        <h2>Ultimi articoli</h2>
+        <ul class="post-list">
+
+            <li class="post-item">
+                <a href="blog/posts/primo-articolo.html" class="post-link">
+                    <span class="post-title">Il mio primo articolo</span>
+                    <span class="post-date">17 Feb 2025</span>
+                </a>
+                <p class="post-desc">Un articolo di benvenuto — cosa troverai in questo blog.</p>
+            </li>
+
+            <!-- COPIA DA QUI per aggiungere un articolo
+            <li class="post-item">
+                <a href="blog/posts/nome-articolo.html" class="post-link">
+                    <span class="post-title">Titolo articolo</span>
+                    <span class="post-date">GG Mmm AAAA</span>
+                </a>
+                <p class="post-desc">Breve descrizione dell'articolo.</p>
+            </li>
+            COPIA FINO A QUI -->
+
+        </ul>
+        <a href="blog/" class="see-all">Tutti gli articoli →</a>
+    </section>
+
+    <section class="card">
+        <h2>Contatti</h2>
+        <ul class="contact-list">
+            <li>
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                    <polyline points="22,6 12,13 2,6"/>
+                </svg>
+                <strong>Email:</strong>
+                <a href="mailto:giorgiomartucci02@gmail.com">giorgiomartucci02@gmail.com</a>
+            </li>
+            <li>
+                <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                </svg>
+                <strong>GitHub:</strong>
+                <a href="https://github.com/ThetaLogN" target="_blank" rel="noopener">github.com/ThetaLogN</a>
+            </li>
+        </ul>
+    </section>
+
+</div>
+
+<footer>
+    <p>&copy; 2025 Giorgio Martucci. Tutti i diritti riservati.</p>
+</footer>
+
 </body>
 </html>

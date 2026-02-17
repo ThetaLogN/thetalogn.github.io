@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ✏️ 1. Cambia questo titolo -->
+    <title>Titolo articolo — Giorgio Martucci</title>
+    <!-- ✏️ 2. Cambia questa descrizione (usata da Google) -->
+    <meta name="description" content="Breve descrizione dell'articolo.">
+    <link rel="icon" type="image/png" href="../../favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg:      #f5f2ee;
+            --surface: #ffffff;
+            --ink:     #1c1917;
+            --ink-2:   #44403c;
+            --ink-3:   #78716c;
+            --border:  #e7e5e4;
+            --accent:  #b85c3e;
+            --radius:  12px;
+            --serif:   'Lora', Georgia, serif;
+            --sans:    'DM Sans', system-ui, sans-serif;
+            --mono:    'DM Mono', monospace;
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: var(--sans); background: var(--bg); color: var(--ink); line-height: 1.75; min-height: 100vh; }
+        header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 1.5rem 0; position: relative; }
+        header::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent), #dda090); }
+        .header-inner { max-width: 850px; margin: 0 auto; padding: 0 1.5rem; display: flex; align-items: center; justify-content: space-between; }
+        .back-link { display: inline-flex; align-items: center; gap: .4rem; text-decoration: none; color: var(--ink-3); font-size: .875rem; font-weight: 500; transition: color .2s; }
+        .back-link:hover { color: var(--accent); }
+        .back-link svg { width: 16px; height: 16px; }
+        .header-name { font-family: var(--serif); font-size: 1rem; color: var(--ink); text-decoration: none; }
+        .container { max-width: 720px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
+        .post-meta { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+        .post-date { font-family: var(--mono); font-size: .78rem; color: var(--ink-3); }
+        .tags { display: flex; gap: .4rem; flex-wrap: wrap; }
+        .tag { font-family: var(--mono); font-size: .72rem; color: var(--ink-3); background: var(--surface); border: 1px solid var(--border); padding: .15rem .65rem; border-radius: 20px; }
+        .post-title { font-family: var(--serif); font-size: 2.25rem; font-weight: 600; line-height: 1.25; color: var(--ink); letter-spacing: -.5px; margin-bottom: .75rem; }
+        .post-desc { font-size: 1.1rem; color: var(--ink-3); font-style: italic; padding-bottom: 2rem; border-bottom: 1px solid var(--border); margin-bottom: 2.5rem; }
+        .post-content { font-size: 1.05rem; line-height: 1.85; color: var(--ink-2); }
+        .post-content h2 { font-family: var(--serif); font-size: 1.5rem; font-weight: 600; color: var(--ink); margin: 2.5rem 0 .75rem; }
+        .post-content h3 { font-family: var(--serif); font-size: 1.2rem; color: var(--ink); margin: 2rem 0 .5rem; }
+        .post-content p { margin-bottom: 1.35rem; }
+        .post-content a { color: var(--accent); text-decoration: underline; }
+        .post-content strong { color: var(--ink); font-weight: 600; }
+        .post-content ul, .post-content ol { padding-left: 1.5rem; margin-bottom: 1.35rem; }
+        .post-content li { margin-bottom: .4rem; }
+        .post-content blockquote { border-left: 3px solid var(--accent); padding: .75rem 1.25rem; margin: 1.75rem 0; background: #faf8f6; color: var(--ink-3); font-style: italic; border-radius: 0 var(--radius) var(--radius) 0; }
+        .post-content code { font-family: var(--mono); font-size: .875em; background: #ede9e4; padding: .15em .4em; border-radius: 4px; color: var(--accent); }
+        .post-content pre { background: #1c1917; color: #e7e5e4; padding: 1.25rem 1.5rem; border-radius: var(--radius); overflow-x: auto; margin-bottom: 1.5rem; }
+        .post-content pre code { background: none; color: inherit; padding: 0; font-size: .875rem; }
+        .post-content img { max-width: 100%; border-radius: var(--radius); margin: 1.5rem 0; }
+        .post-content hr { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+        .post-footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+        .back-to-blog { color: var(--ink-3); text-decoration: none; font-size: .9rem; display: inline-flex; align-items: center; gap: .4rem; transition: color .2s; }
+        .back-to-blog:hover { color: var(--accent); }
+        .back-to-blog svg { width: 15px; height: 15px; }
+        footer { text-align: center; padding: 2rem 0 2.5rem; color: var(--ink-3); font-size: .825rem; }
+        @media (max-width: 600px) { .post-title { font-size: 1.65rem; } }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-inner">
+        <a href="../" class="back-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+            Blog
+        </a>
+        <a href="../../" class="header-name">Giorgio Martucci</a>
+    </div>
+</header>
+
+<div class="container">
+    <article>
+        <header style="border:none; padding:0; margin-bottom:0; background:none;">
+            <div class="post-meta">
+                <!-- ✏️ 3. Cambia la data -->
+                <time class="post-date">GG Mese AAAA</time>
+                <div class="tags">
+                    <!-- ✏️ 4. Aggiungi/rimuovi tag -->
+                    <span class="tag">tag1</span>
+                    <span class="tag">tag2</span>
+                </div>
+            </div>
+            <!-- ✏️ 5. Titolo visibile nell'articolo -->
+            <h1 class="post-title">Titolo articolo</h1>
+            <!-- ✏️ 6. Sottotitolo / descrizione breve -->
+            <p class="post-desc">Breve descrizione dell'articolo.</p>
+        </header>
+
+        <div class="post-content">
+
+            <!-- ✏️ 7. SCRIVI QUI IL CONTENUTO dell'articolo -->
+
+            <p>Primo paragrafo...</p>
+
+            <h2>Titolo sezione</h2>
+
+            <p>Altro testo con <strong>grassetto</strong>, <em>corsivo</em> e <code>codice inline</code>.</p>
+
+            <ul>
+                <li>Elemento lista</li>
+                <li>Altro elemento</li>
+            </ul>
+
+            <blockquote>
+                Una citazione in evidenza.
+            </blockquote>
+
+            <pre><code>// Blocco di codice
+const esempio = "hello world";
+console.log(esempio);</code></pre>
+
+            <hr>
+
+            <p>Conclusione.</p>
+
+        </div>
+
+        <footer class="post-footer">
+            <a href="../" class="back-to-blog">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+                Tutti gli articoli
+            </a>
+        </footer>
+    </article>
+</div>
+
+<footer>
+    <p>&copy; 2025 Giorgio Martucci. Tutti i diritti riservati.</p>
+</footer>
+
+</body>
+</html>

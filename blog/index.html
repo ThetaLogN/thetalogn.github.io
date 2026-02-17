@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog — Giorgio Martucci</title>
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg:      #f5f2ee;
+            --surface: #ffffff;
+            --ink:     #1c1917;
+            --ink-2:   #44403c;
+            --ink-3:   #78716c;
+            --border:  #e7e5e4;
+            --accent:  #b85c3e;
+            --radius:  12px;
+            --serif:   'Lora', Georgia, serif;
+            --sans:    'DM Sans', system-ui, sans-serif;
+            --mono:    'DM Mono', monospace;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: var(--sans);
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.75;
+            min-height: 100vh;
+        }
+
+        header {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 1.5rem 0;
+            position: relative;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), #dda090);
+        }
+
+        .header-inner {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .back-home {
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+            text-decoration: none;
+            color: var(--ink-3);
+            font-size: .875rem;
+            font-weight: 500;
+            transition: color .2s;
+        }
+        .back-home:hover { color: var(--accent); }
+        .back-home svg { width: 16px; height: 16px; }
+
+        .header-name {
+            font-family: var(--serif);
+            font-size: 1rem;
+            color: var(--ink);
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .page-title {
+            font-family: var(--serif);
+            font-size: 2.25rem;
+            font-weight: 600;
+            color: var(--ink);
+            letter-spacing: -.5px;
+        }
+        .page-subtitle {
+            color: var(--ink-3);
+            margin-top: .35rem;
+            font-size: .95rem;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2rem 2.25rem;
+            box-shadow: 0 2px 12px rgba(28,25,23,.06);
+        }
+
+        /* ── YEAR GROUP ── */
+        .year-group { margin-bottom: .5rem; }
+        .year-label {
+            font-family: var(--mono);
+            font-size: .75rem;
+            font-weight: 500;
+            color: var(--ink-3);
+            letter-spacing: .6px;
+            text-transform: uppercase;
+            padding-bottom: .6rem;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: .25rem;
+        }
+
+        .post-list { list-style: none; }
+        .post-item {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .post-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+        .post-link {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 1rem;
+            text-decoration: none;
+            color: inherit;
+        }
+        .post-link:hover .post-title { color: var(--accent); }
+
+        .post-title {
+            font-family: var(--serif);
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--ink);
+            transition: color .2s;
+        }
+        .post-date {
+            font-family: var(--mono);
+            font-size: .75rem;
+            color: var(--ink-3);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .post-desc {
+            color: var(--ink-3);
+            font-size: .875rem;
+            margin-top: .35rem;
+        }
+        .tags { display: flex; gap: .4rem; flex-wrap: wrap; margin-top: .5rem; }
+        .tag {
+            font-family: var(--mono);
+            font-size: .72rem;
+            color: var(--ink-3);
+            background: var(--bg);
+            border: 1px solid var(--border);
+            padding: .15rem .65rem;
+            border-radius: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2.5rem 0;
+            color: var(--ink-3);
+            font-size: .825rem;
+        }
+
+        @media (max-width: 600px) {
+            .page-title { font-size: 1.75rem; }
+            .card { padding: 1.5rem; }
+            .post-link { flex-direction: column; gap: .2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-inner">
+        <a href="../" class="back-home">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="15 18 9 12 15 6"/>
+            </svg>
+            Home
+        </a>
+        <a href="../" class="header-name">Giorgio Martucci</a>
+    </div>
+</header>
+
+<div class="container">
+
+    <div>
+        <h1 class="page-title">Blog</h1>
+        <p class="page-subtitle">Articoli su sviluppo, tecnologia e progetti personali.</p>
+    </div>
+
+    <section class="card">
+
+        <!-- ╔═══════════════════════════════════════════════════╗
+             ║  LISTA ARTICOLI — aggiungi qui ogni nuovo post   ║
+             ║  I post più recenti vanno IN CIMA alla lista.    ║
+             ╚═══════════════════════════════════════════════════╝ -->
+
+        <div class="year-group">
+            <p class="year-label">2025</p>
+            <ul class="post-list">
+
+                <li class="post-item">
+                    <a href="posts/primo-articolo.html" class="post-link">
+                        <span class="post-title">Il mio primo articolo</span>
+                        <span class="post-date">17 Feb 2025</span>
+                    </a>
+                    <p class="post-desc">Un articolo di benvenuto — cosa troverai in questo blog.</p>
+                    <div class="tags">
+                        <span class="tag">meta</span>
+                        <span class="tag">introduzione</span>
+                    </div>
+                </li>
+
+                <!-- COPIA DA QUI per aggiungere un articolo
+                <li class="post-item">
+                    <a href="posts/nome-articolo.html" class="post-link">
+                        <span class="post-title">Titolo articolo</span>
+                        <span class="post-date">GG Mmm AAAA</span>
+                    </a>
+                    <p class="post-desc">Breve descrizione dell'articolo.</p>
+                    <div class="tags">
+                        <span class="tag">tag1</span>
+                        <span class="tag">tag2</span>
+                    </div>
+                </li>
+                COPIA FINO A QUI -->
+
+            </ul>
+        </div>
+
+    </section>
+</div>
+
+<footer>
+    <p>&copy; 2025 Giorgio Martucci. Tutti i diritti riservati.</p>
+</footer>
+
+</body>
+</html>
